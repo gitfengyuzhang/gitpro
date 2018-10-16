@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<!--扫描引入-->
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/immersed.js" ></script>
+		
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<!---->
+
+		<style type="text/css">
+			.mui-input-group {
+				font-size: 15px;
+			}
+			
+			.mui-input-group input {
+				font-size: 15px;
+			}
+			
+			.mui-input-group p {
+				padding: 10px 0 0 0px;
+				color: black;
+				font-size: 15px;
+				font-weight: bold;
+			}
+			
+			.mui-input-group label {
+				width: 30%;
+			}
+			
+			.mui-input-row label~input,
+			.mui-input-row label~textarea {
+				width: 70%;
+			}
+			
+			.mui-input-row label~select {
+				width: 60%;
+				font-size: 14px;
+				color: #999;
+			}
+			
+			.mui-input-row label~span {
+				width: 100%;
+				font-size: 14px;
+				display: block;
+				padding: 10px 0;
+				color: #999;
+			}
+			
+			.red-dot {
+				color: red;
+			}
+			
+			.pop-picker .multi-picker .date-picker {}
+			/*蒙版*/
+			.mui-backdrop {
+    			position: fixed;
+    			top: 0;
+    			right: 0;
+    			bottom: 0;
+    			left: 0;
+    			z-index: 998;
+    			background-color: rgba(0,0,0,0.1);
+			}
+		</style>
+		<!---->
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				border: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				background-color: #BAFE90;
+			}
+			
+			.clearfix:after {
+				content: ".";
+				display: block;
+				font-size: 0;
+				height: 0;
+				clear: both;
+				visibility: hidden;
+			}
+			
+			.clearfix {
+				display: inline-table;
+			}
+			
+			*html .clearfix {
+				height: 1%;
+			}
+			
+			.clearfix {
+				display: block;
+			}
+			
+			*+html .clearfix {
+				min-height: 1%;
+			}
+			/*.che_tit {
+				text-align: center;
+				padding: 20px;
+			}*/
+			
+			.ul_pro {
+				background-color: #CED3D9;
+				text-align: center;
+				padding: 4px 2px;
+				font-size: 14px;
+			}
+			
+			.ul_pro li {
+				float: left;
+				width: 11.11%;
+				padding: 2px;
+				box-sizing: border-box;
+			}
+			
+			.ul_pro .li_close {
+				float: right;
+				width: 22.22%;
+			}
+			
+			.ul_pro .li_close span {
+				background-color: #ACB3BB;
+			}
+			
+			.ul_pro .li_clean {
+				float: right;
+				width: 22.22%;
+			}
+			
+			.ul_pro li span {
+				display: block;
+				background-color: #fff;
+				border-radius: 4px;
+				box-shadow: 2px 2px 2px #888888;
+				/* max-width:48px; margin:0 auto; */
+				line-height: 32px;
+				padding-top: 2px;
+			}
+			
+			.ul_pro li span:active {
+				background-color: #4DA9F2;
+				color: #fff;
+			}
+			
+			.ul_input {
+				padding: 20px;
+				/*width: 350px;*/
+				width: 100%;
+				margin: 0 auto;
+			}
+			
+			.ul_input li {
+				float: left;
+				width: 9%;
+				padding: 1px;
+				text-align: center;
+			}
+			
+			.ul_input li span {
+				display: block;
+				background-color: #fff;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				/*width: 40px;*/
+				width: auto;
+				margin: 0 auto;
+				/*height: 40px;*/
+				height: 2rem;
+				line-height: 2rem;
+			}
+			
+			.ul_keybord {
+				background-color: #CED3D9;
+				text-align: center;
+				padding: 4px 2px;
+				font-size: 14px;
+			}
+			
+			.ul_keybord li {
+				float: left;
+				width: 10%;
+				padding: 2px;
+				box-sizing: border-box;
+			}
+			
+			.ul_keybord .ikey20 {
+				margin-left: 5%;
+			}
+			
+			.ul_keybord .li_w {
+				width: 11.11%;
+			}
+			
+			.ul_keybord .li_close {
+				float: right;
+				width: 22.22%;
+			}
+			
+			.ul_keybord .li_close span {
+				background-color: #ACB3BB;
+			}
+			
+			.ul_keybord .li_clean {
+				float: right;
+				width: 22.22%;
+			}
+			
+			.ul_keybord li span {
+				display: block;
+				background-color: #fff;
+				border-radius: 4px;
+				box-shadow: 2px 2px 2px #888888;
+				/* max-width:48px; margin:0 auto; */
+				line-height: 32px;
+				padding-top: 2px;
+			}
+			
+			.ul_keybord li span:active {
+				background-color: #4DA9F2;
+				color: #fff;
+			}
+			
+			.mui-input-row label {
+				padding: 11px 0;
+			}
+			.mui-input-group .mui-input-row:after{
+				left: 0;
+			}
+			.codefSize{
+				font-size: 2rem;
+			}
+			.codefSize:active{
+				color: #3abdfc;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left fWhite"></a>
+			<h1 class="mui-title fWhite">接车</h1>
+		</header>
+		<div class="mui-content">
+			
+			<div class="mui-card">
+				<form class="mui-content-padded mui-input-group">
+				<p>车辆基本信息：</p>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>车牌号:</label>
+					<!--车牌输入框-->
+					<div class="" style="float: right;width: 70%;">
+						<div class="car_input">
+							<ul class="clearfix ul_input" style="padding: 0;">
+								<li class="input_pro"><span></span></li>
+								<li class="input_pp input_zim"><span></span></li>
+								<li class="input_pp"><span></span></li>
+								<li class="input_pp"><span></span></li>
+								<li class="input_pp"><span></span></li>
+								<li class="input_pp"><span></span></li>
+								<li class="input_pp"><span></span></li>
+								<b onmousedown="choose(this);" type="button" class="mui-btn mui-btn-primary fMainBg" style="line-height: inherit; float: initial;width: auto;border: 1px solid #eee;padding: 6px 5px 5px;">选择</b>
+								<span onclick="clicked('barcode_scan.html',true,true)"  class="mui-icon-extra mui-icon-extra-sweep codefSize"></span>
+							</ul>
+						</div>
+
+					</div>
+
+					<div id="jp_pro"></div>
+					<script type="text/javascript" src="js/jquery.min.js"></script>
+					<script src="layer_mobile/layer.js" type="text/javascript"></script>
+					<script src="js/keyboard.js" type="text/javascript"></script>
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>车辆识别代号:</label>
+					<input id="carVIN" type="text" class="mui-input" placeholder="填写底盘VIN">
+				</div>
+				<div class="mui-input-row">
+					<label>发动机号:</label>
+					<input id="engineNo" type="text" class="mui-input" placeholder="填写发动机号">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>车辆类型:</label>
+					<span id="carType" class="pop-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label>车型:</label>
+					<span id="carModel" class="multi-picker">选择品牌、车系、型号</span>
+				</div>
+			</form>
+			<form class="mui-content-padded mui-input-group">
+				<p>车主及送修人信息：</p>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>车主姓名:</label>
+					<input id="owner" type="text" class="mui-input" placeholder="填写车主姓名">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>送修人:</label>
+					<input id="sender" type="text" class="mui-input" placeholder="填写送修人姓名">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>联系电话:</label>
+					<input id="contact" type="tel" class="mui-input" placeholder="填写送修人电话">
+				</div>
+			</form>
+			<form class="mui-content-padded mui-input-group">
+				<p>车辆进厂各项数据：</p>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>油表数:</label>
+					<input id="fuelMeter" type="number" class="mui-input" placeholder="填写油表数">
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>进厂里程:</label>
+					<input id="mileage" type="number" class="mui-input" placeholder="填写进厂里程">
+				</div>
+			</form>
+			<form class="mui-content-padded mui-input-group">
+				<p>车辆维修各项数据：</p>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>接车员工:</label>
+					<span id="repairStaff" class="pop-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>维修性质:</label>
+					<span id="repairKind" class="pop-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>维修类型:</label>
+					<span id="repairType" class="pop-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>维修技师:</label>
+					<span id="repairEngineer" class="pop-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>质量检测员:</label>
+					<span id="repairInspector" class="pop-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label><span class="red-dot">*</span>进厂时间:</label>
+					<span id="startDate" class="date-picker">未选择</span>
+				</div>
+				<div class="mui-input-row">
+					<label>预计交车时间:</label>
+					<span id="dueDate" class="date-picker">未选择</span>
+				</div>
+			</form>
+			
+			</div>
+			
+				
+			<!---->
+			<div class="mui-content-padded">
+				<button id="submit" type="button" class="mui-btn mui-btn-main mui-btn-block">提交</button>
+			</div>
+			<!---->
+
+		</div>
+		
+		<!--车牌号键盘容器-->
+		<div style="text-align:center;">
+		</div>
+
+		
+		<script src="js/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/car-data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function choose(e){
+				openWindow('receive-car/choseCar.html','choseCar');
+			}
+			
+			//
+			var carNo = document.getElementById("carNo");
+			var carVIN = document.getElementById("carVIN");
+			var engineNo = document.getElementById("engineNo");
+			var carType = document.getElementById("carType");
+			var carModel = document.getElementById("carModel");
+			var owner = document.getElementById("owner");
+			var sender = document.getElementById("sender");
+			var contact = document.getElementById("contact");
+			var fuelMeter = document.getElementById("fuelMeter");
+			var mileage = document.getElementById("mileage");
+			var repairStaff = document.getElementById("repairStaff");
+			var repairKind = document.getElementById("repairKind");
+			var repairType = document.getElementById("repairType");
+			var repairEngineer = document.getElementById("repairEngineer");
+			var repairInspector = document.getElementById("repairInspector");
+			var startDate = document.getElementById("startDate");
+			var dueDate = document.getElementById("dueDate");
+			var submit = document.getElementById("submit");
+			
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var data = self.data;
+				if(data) {
+					carNo.value = data.carNo;
+					carVIN.value = data.carVIN;
+					engineNo.value = data.engineNo;
+					carType.innerText = data.carType;
+					carModel.innerText = data.carModel;
+					owner.value = data.owner;
+					sender.value = data.sender;
+					contact.value = data.contact;
+					fuelMeter.value = data.fuelMeter;
+					mileage.value = data.mileage;
+					repairStaff.innerText = data.repairStaff;
+					repairKind.innerText = data.repairKind;
+					repairType.innerText = data.repairType;
+					repairEngineer.innerText = data.repairEngineer;
+					repairInspector.innerText = data.repairInspector;
+					startDate.innerText = data.startDate;
+					dueDate.innerText = data.dueDate;
+					document.getElementById("lyOther").style = "block";
+				}
+			});
+
+			// 单级选择器
+			var popPicker = new mui.PopPicker();
+			mui('.pop-picker').each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					var self = this;
+					switch(i) {
+						case 0: // 车辆类型
+							popPicker.setData([{
+								value: '1',
+								text: '小型车'
+							}, {
+								value: '2',
+								text: '中大型客车'
+							}, {
+								value: '3',
+								text: '大型货车'
+							}]);
+							break;
+						case 1: // 接车员工
+							popPicker.setData([{
+								value: '张三',
+								text: '张三'
+							}, {
+								value: '李四',
+								text: '李四'
+							}]);
+							break;
+						case 2: // 维修性质
+							popPicker.setData([{
+									value: '1',
+									text: '汽车维护'
+								}, {
+									value: '2',
+									text: '故障修理'
+								},
+								{
+									value: '3',
+									text: '事故修理'
+								}, {
+									value: '4',
+									text: '二级维护'
+								}
+							]);
+							break;
+						case 3: // 维修类型
+							popPicker.setData([{
+									value: '1',
+									text: '小修'
+								}, {
+									value: '2',
+									text: '专项'
+								}, {
+									value: '3',
+									text: '一维'
+								},
+								{
+									value: '4',
+									text: '二维'
+								}, {
+									value: '5',
+									text: '总成'
+								}, {
+									value: '6',
+									text: '整车'
+								}
+							]);
+							break;
+						case 4: // 维修技师
+							popPicker.setData([{
+								value: '张三',
+								text: '张三'
+							}, {
+								value: '李四',
+								text: '李四'
+							}]);
+							break;
+						case 5: // 质量检测员
+							popPicker.setData([{
+								value: '张三',
+								text: '张三'
+							}, {
+								value: '李四',
+								text: '李四'
+							}]);
+							break;
+					}
+					popPicker.pickers[0].setSelectedIndex(0, 100); // 默认选中项
+					popPicker.show(function(items) {
+						self.innerText = items[0].text;
+					});
+				});
+			});
+
+			// 三级选择器
+			var multiPicker = new mui.PopPicker({
+				layer: 3
+			});
+			multiPicker.setData(carData);
+			mui('.multi-picker').each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					var self = this;
+					multiPicker.show(function(items) {
+						self.innerText = items[0].text + " - " + items[1].text + " - " + items[2].text;
+					});
+				});
+			});
+
+			// 时间选择器
+			var dtPicker = new mui.DtPicker({
+				type: 'datetime', // 完整日期视图(年月日时分)
+				labels: ['年', '月', '日', '时', '分'] // 标签区域提示语
+			});
+			mui('.date-picker').each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					var self = this;
+					dtPicker.show(function(items) {
+						self.innerText = items.value;
+					})
+				}, false);
+			});
+
+			// 提交
+			submit.addEventListener('tap', function() {
+				if(carNo.value == '') {
+					return mui.toast(carNo.placeholder);
+				}
+				if(!isVehicleNumber(carNo.value)) {
+					return mui.toast("车牌号不正确");
+				}
+				if(carVIN.value == '') {
+					return mui.toast(carVIN.placeholder);
+				}
+				if(carType.innerText == '未选择') {
+					return mui.toast("选择车辆类型");
+				}
+				if(owner.value == '') {
+					return mui.toast(owner.placeholder);
+				}
+				if(sender.value == '') {
+					return mui.toast(sender.placeholder);
+				}
+				if(contact.value == '') {
+					return mui.toast(contact.placeholder);
+				}
+				if(fuelMeter.value == '') {
+					return mui.toast(fuelMeter.placeholder);
+				}
+				if(mileage.value == '') {
+					return mui.toast(mileage.placeholder);
+				}
+				if(repairStaff.innerText == '未选择') {
+					return mui.toast("选择接车员工");
+				}
+				if(repairKind.innerText == '未选择') {
+					return mui.toast("选择维修性质");
+				}
+				if(repairType.innerText == '未选择') {
+					return mui.toast("选择维修类型");
+				}
+				if(repairEngineer.innerText == '未选择') {
+					return mui.toast("选择维修技师");
+				}
+				if(repairInspector.innerText == '未选择') {
+					return mui.toast("选择质量检测员");
+				}
+				if(startDate.innerText == '未选择') {
+					return mui.toast("选择进厂时间");
+				}
+
+				var index = plus.webview.getWebviewById('index.html');
+				mui.fire(index, 'receiveSubmit', {
+					data: {
+						carNo: carNo.value,
+						carVIN: carVIN.value,
+						engineNo: engineNo.value,
+						carType: carType.innerText,
+						carModel: carModel.innerText,
+						owner: owner.value,
+						sender: sender.value,
+						contact: contact.value,
+						fuelMeter: fuelMeter.value,
+						mileage: mileage.value,
+						repairStaff: repairStaff.innerText,
+						repairKind: repairKind.innerText,
+						repairType: repairType.innerText,
+						repairEngineer: repairEngineer.innerText,
+						repairInspector: repairInspector.innerText,
+						startDate: startDate.innerText,
+						dueDate: dueDate.innerText == '未选择' ? '' : dueDate.innerText
+					}
+				});
+				mui.toast("提交成功");
+				setTimeout(function() {
+					mui.back();
+				}, 500);
+			});
+		</script>
+	</body>
+
+</html>

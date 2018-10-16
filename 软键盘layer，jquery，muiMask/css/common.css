@@ -1,0 +1,52 @@
+html,
+body {
+	background: #fff;
+}
+
+.mui-content {
+	background: #fff;
+}
+
+.mui-bar-nav {
+	background: #2F4056;
+}
+
+.bgwhite {
+	background: #fff !important;
+}
+
+.fontblack {
+	color: black;
+}
+
+.fWhite {
+	color: #FFFFFF !important;
+}
+.fMainBg{
+	background: #3abdfc;
+}
+.fMainColor {
+	color: #3abdfc;
+}
+
+.mui-btn {
+	font-size: 16px;
+	padding: 8px;
+}
+
+.mui-btn-main {
+	color: #fff;
+	border: 1px solid #3abdfc;
+	background-color: #3abdfc;
+}
+
+.mui-btn-main:enabled:active,
+.mui-btn-main.mui-active:enabled {
+	color: #fff;
+	border: 1px solid #1a99d4;
+	background-color: #1a99d4;
+}
+
+.text-size-14 {
+	font-size: 14px;
+}
